@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@800&display=swap');
+
+div#head h1{
+    font-family: 'Nunito', sans-serif;
+    font-size: 26pt;
+    color: #ffffff;
+    line-height: 20%;
+}
+
+div#corpo{
+    width: 100vw;
+    height: 100vh;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: linear-gradient(-45deg, #4f3344,#28385A);
+    background-size: 400% 400%;
+    animation: backgroudTransition 5s ease-in-out infinite;
+}
+
+div#corpo form#login{
+    height: 140px;
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content:space-around;
+    align-items: center;
+}
+
+div#corpo form input.campo{
+    color: #ffffff;
+    width: 96%;
+    height: 25px;
+    background-color: #28293c;
+    border-radius: 4px;
+}
+
+.botao{
+    text-align: center;
+    line-height: 50%;
+    font-family: 'Nunito', sans-serif;
+    font-size: 14pt;
+    color: #ffffff;
+    background-color: #5a93d8;
+    padding: 8px;
+    border-radius: 4px;
+    height: 34px;
+    width: 100%;
+}
+
+#ancora{
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+}
+
+.botao:hover{
+    background-color: rgb(51, 143, 185);
+}
+
+div#input input#txtn{
+    height: 25px;
+    width: 170px;
+    border-radius: 5px;
+}
+
+section ul#instrucao{
+    color: rgb(255, 255, 255);
+    background-color: rgba(0,0,0,0.8);
+    animation-name: rainbow;
+    animation-duration: infinite;
+}
+
+@keyframes backgroudTransition{
+    0%{background-position: 0% 0%;}
+    50%{background-position: 100% 0%;}
+    100%{background-position: 0% 0%;}
+}
