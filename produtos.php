@@ -41,12 +41,19 @@ switch ($acao){
       
       <?php
 
-      $filtro='';
-      //var_dump($produto);
-       
-        //echo $produto;
-        //Listagem dos produtos
+      $filtro= (isset($_GET['filtro'])?$_GET['filtro']:'');
 
+      echo $filtro;
+      
+      echo'<form action=produtos.php>
+      <input id="filtro" name="filtro" type="text">
+      <input type="submit" Value="filtrar">
+      </form>';
+
+      
+      //echo $produto;
+      
+      //Listagem dos produtos
       $produtos = R::findAll('produtos');
 
        foreach ($produtos as $item) { 
