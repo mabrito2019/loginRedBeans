@@ -32,15 +32,13 @@
 
 <?php 
 session_start();
-if (!isset($_SESSION['nome'])){
+/*if (!isset($_SESSION['nome'])){
     header('Location: login.php?msg=seção expirada faça login');
-}
+}*/
 include('varlog.php');
   require 'rb.php';
-  R::setup( 'mysql:host=localhost;dbname=login','root', '' );
-        
-
-  
+  //R::setup( 'mysql:host=localhost;dbname=login','root', '' );
+  R::setup( 'sqlite:DBlogin.db' );
 
 
   if($_SERVER["REQUEST_METHOD"] == "POST"){

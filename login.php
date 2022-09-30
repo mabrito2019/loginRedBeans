@@ -14,7 +14,8 @@
     include('varlog.php');
     require 'rb.php';
 
-    R::setup( 'mysql:host=localhost;dbname=login','root', '' );
+    //R::setup( 'mysql:host=localhost;dbname=login','root', '' );
+    R::setup( 'sqlite:DBlogin.db' );
 
     $msg = isset($_GET["msg"])? $_GET["msg"] :'';
     $sair = isset($_GET["sair"])?$_GET["sair"]:"";

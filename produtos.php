@@ -16,7 +16,8 @@ if (!isset($_SESSION['nome'])){
 require 'rb.php';
 include('varlog.php');
 
-R::setup( 'mysql:host=localhost;dbname=login','root', '' );
+//R::setup( 'mysql:host=localhost;dbname=login','root', '' );
+R::setup( 'sqlite:DBlogin.db' );
 
 $acao = isset($_GET["acao"])? $_GET["acao"] :'listar';
 
@@ -42,8 +43,6 @@ switch ($acao){
       <?php
 
       $filtro= (isset($_GET['filtro'])?$_GET['filtro']:'');
-
-      echo $filtro;
       
       echo'<form action=produtos.php>
       <input id="filtro" name="filtro" type="text">
@@ -54,7 +53,7 @@ switch ($acao){
       //echo $produto;
       
       //Listagem dos produtos
-      $produtos = R::findAll('produtos');
+      $produtos = R::find('produtos','descricao LIKE ?',['%'.$filtro.'%']);
 
        foreach ($produtos as $item) { 
         ?>
@@ -65,8 +64,8 @@ switch ($acao){
           <td><?=$item->unidade?></td>
           <td><?=$item->quantidade?></td>
           <td> 
-            <input type="button" value="editar">
-            <input type="button" value="excluir">
+            <a href="produtos.php?acao=editar&id=<?=$item->id?>"><input type="button" value="editar"></a>
+            <a href="produtos.php?acao=excluir&id=<?=$item->id?>"><input type="button" value="excluir"></a>
           </td>
        </tr>
 
@@ -137,6 +136,19 @@ $id = R::store($bd_movimentacao);
 }
   break;
 
+case 'excluir':
+  $id = $_GET['id'];
+  $excluir = R::find('produtos','id LIKE ?',['%'.$id.'%']);
+  
+  foreach($excluir as $item){
+    echo $item->descricao;
+    echo 'teste';
+  }
+  
+
+  /*R::trash( $excluir ); //for one bean
+  header('location:produtos.php');*/
+  break;
 };
 
 echo '<a href="index.php">HOME</a>';
