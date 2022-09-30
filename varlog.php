@@ -8,6 +8,7 @@ function ini_session($nome,$login){
 };
 
 function ext_session(){
+        session_start();
         $_SESSION = array();
         //session_destroy();
 };
