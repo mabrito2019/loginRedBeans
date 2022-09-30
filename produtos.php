@@ -137,18 +137,43 @@ $id = R::store($bd_movimentacao);
   break;
 
 case 'excluir':
-  $id = $_GET['id'];
-  $excluir = R::find('produtos','id LIKE ?',['%'.$id.'%']);
-  
-  foreach($excluir as $item){
-    echo $item->descricao;
-    echo 'teste';
-  }
-  
-
-  /*R::trash( $excluir ); //for one bean
-  header('location:produtos.php');*/
+  $excluir = R::findOne('produtos', 'id = ?', [$_GET['id']]);
+  R::trash( $excluir );
+  header('location:produtos.php');
   break;
+
+  case 'editar':
+    $editar = R::findOne('produtos', 'id = ?', [$_GET['id']]);
+?>
+    <form action="produtos.php?acao=editado&id=<?=$_GET['id']?>" method="post">
+          <label>Descrição</label>
+            <input id="descricao" type="text" name="descricao" value="<?=$editar->descricao?>" required></br>
+          
+          <label>Preço Unitário</label>
+            <input id="preco " type="text" name="preco" value="<?=$editar->preco?>" required></br>
+          
+          <label>Unidade de medida</label>
+            <input id="unidade" type="text" name="unidade" value="<?=$editar->unidade?>" required></br>
+  
+            <label>Quantidade</label>
+            <input id="quantidade" type="text" name="quantidade" value="<?=$editar->quantidade?>"></br>
+          
+          <input id="submit" type="submit" Value="Salvar">
+        </form>
+
+<?php
+break;
+
+case 'editado':
+  $bd_produtos = R::load( 'produtos', );
+
+    $bd_produtos -> descricao = $_POST['descricao'];
+    $bd_produtos -> preco = $_POST['preco'];
+    $bd_produtos -> unidade = $_POST['unidade'];
+    $bd_produtos -> quantidade = $_POST['quantidade'];
+    R::store( $bd_produtos );
+
+break;
 };
 
 echo '<a href="index.php">HOME</a>';
