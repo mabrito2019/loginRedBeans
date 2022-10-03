@@ -1,6 +1,3 @@
-<?php 
-  //  header('location: localhost:8080/projeto/index.php');
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -63,10 +60,8 @@ include('varlog.php');
   $bd_log = R::dispense( 'logsistema' );
 
   $bd_log->login = $_SESSION['login'];
-  $bd_log->acao = "Cadastrou um novo usuário ".$cad_name." com o login ".$cad_login;
+  $bd_log->acao = "Cadastrou ".$cad_name." com o login ".$cad_login." como novo usuário";
   $bd_log->data = date('Y/m/d H:i:s');
   $id = R::store($bd_log);
-      
-      echo '<h1>Teste OK</h1>';
   }};
 ?>

@@ -21,6 +21,7 @@ if (!isset($_SESSION['nome'])){
 <body>
 <a href="./usuarios.php" id="ancora"><input type="button" value="Usuarios" class="botao"></a>
 <a href="./produtos.php" id="ancora"><input type="button" value="Produtos" class="botao"></a>
+<a href="./log.php" id="ancora"><input type="button" value="Log do Sistema" class="botao"></a>
 </body>
 </html>
 

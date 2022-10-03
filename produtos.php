@@ -165,15 +165,16 @@ case 'excluir':
 break;
 
 case 'editado':
-  $bd_produtos = R::load( 'produtos', );
+  $bd_produtos = R::load( 'produtos', $_GET['id'] );
 
     $bd_produtos -> descricao = $_POST['descricao'];
     $bd_produtos -> preco = $_POST['preco'];
     $bd_produtos -> unidade = $_POST['unidade'];
     $bd_produtos -> quantidade = $_POST['quantidade'];
     R::store( $bd_produtos );
-
+    header('location:produtos.php');
 break;
+
 };
 
 echo '<a href="index.php">HOME</a>';

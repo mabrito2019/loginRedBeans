@@ -10,7 +10,9 @@
 </head>
 
 <body>
-    <?php
+<?php
+date_default_timezone_set ("Brazil/East");
+
     include('varlog.php');
     require 'rb.php';
 
@@ -47,7 +49,7 @@
     
             //Entrada de registro de LOG no banco de dados
             $bd_log->login = $_SESSION['login'];
-            $bd_log->acao = "Fez login";
+            $bd_log->acao = "Fez login no sistema";
             $bd_log->data = date('Y/m/d H:i:s');
             $id = R::store($bd_log);
             
