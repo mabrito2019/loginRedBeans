@@ -9,7 +9,8 @@
 </head>
 <?php
 include('varlog.php');
-session_start();
+ini_page();
+
 if (!isset($_SESSION['nome'])){
     header('Location: login.php?msg=seção expirada faça login');
 };

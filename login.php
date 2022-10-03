@@ -11,11 +11,10 @@
 
 <body>
 <?php
-date_default_timezone_set ("Brazil/East");
-
     include('varlog.php');
     require 'rb.php';
-
+    ini_page();
+    
     //R::setup( 'mysql:host=localhost;dbname=login','root', '' );
     R::setup( 'sqlite:DBlogin.db' );
 

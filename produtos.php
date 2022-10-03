@@ -8,13 +8,13 @@
 </head>
 
 <?php
-session_start();
+require 'rb.php';
+include('varlog.php');
+ini_page();
+
 if (!isset($_SESSION['nome'])){
   header('Location: login.php?msg=seção expirada faça login');
 };
-
-require 'rb.php';
-include('varlog.php');
 
 //R::setup( 'mysql:host=localhost;dbname=login','root', '' );
 R::setup( 'sqlite:DBlogin.db' );
