@@ -1,6 +1,3 @@
-<?php 
-  //  header('location: localhost:8080/projeto/index.php');
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
