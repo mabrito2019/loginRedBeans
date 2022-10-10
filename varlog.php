@@ -10,7 +10,7 @@ function ext_session(){
 $bd_log = R::dispense( 'logsistema' );
    
 $bd_log->login = $_SESSION['login'];
-$bd_log->acao = "Encerrou a se".$_POST['quantidade']." ".$_POST['unidade']." de ".$_POST['descricao'];
+$bd_log->acao = "Encerrou a sessão Atual";
 $bd_log->data = date('Y/m/d H:i:s');
 $id = R::store($bd_log);
 
