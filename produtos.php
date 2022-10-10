@@ -117,7 +117,14 @@ switch ($acao){
     $bd_produtos -> unidade = $_POST['unidade'];
     $bd_produtos -> quantidade = $_POST['quantidade'];
     R::store( $bd_produtos );
-  
+
+   //Regista a ação cadastro no Log do sistema
+   $bd_log = R::dispense( 'logsistema' );
+   
+   $bd_log->login = $_SESSION['login'];
+   $bd_log->acao = "Cadastrou ".$_POST['quantidade']." ".$_POST['unidade']." de ".$_POST['descricao'];
+   $bd_log->data = date('Y/m/d H:i:s');
+   $id = R::store($bd_log);
 
 //Entrada de registro de LOG no banco de dados
 $bd_movimentacao = R::dispense( 'movimentacao' );
@@ -137,8 +144,18 @@ $id = R::store($bd_movimentacao);
   break;
 
 case 'excluir':
-  $excluir = R::findOne('produtos', 'id = ?', [$_GET['id']]);
-  R::trash( $excluir );
+$excluir = R::findOne('produtos', 'id = ?', [$_GET['id']]);
+  
+//Regista a ação Excluir no Log do sistema
+$bd_log = R::dispense( 'logsistema' );
+   
+$bd_log->login = $_SESSION['login'];
+$bd_log->acao = "Excluiu o item ". $excluir->descricao ." no Banco de dados";
+$bd_log->data = date('Y/m/d H:i:s');
+$id = R::store($bd_log);
+
+//Conclusão da exclusão
+R::trash( $excluir );
   header('location:produtos.php');
   break;
 
@@ -162,6 +179,14 @@ case 'excluir':
         </form>
 
 <?php
+
+//Regista a ação Editar no Log do sistema
+$bd_log = R::dispense( 'logsistema' );
+   
+$bd_log->login = $_SESSION['login'];
+$bd_log->acao = "Editou o item ". $editar->descricao ." no Banco de dados";
+$bd_log->data = date('Y/m/d H:i:s');
+$id = R::store($bd_log);
 break;
 
 case 'editado':
