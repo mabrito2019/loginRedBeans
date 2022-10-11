@@ -48,9 +48,6 @@ switch ($acao){
       <input id="filtro" name="filtro" type="text">
       <input type="submit" Value="filtrar">
       </form>';
-
-      
-      //echo $produto;
       
       //Listagem dos produtos
       $produtos = R::find('produtos','descricao LIKE ?',['%'.$filtro.'%']);
